@@ -1,10 +1,17 @@
 import java.security.InvalidParameterException;
+import java.io.File;
 
+/**
+ * Contains all the properties of a teaching(field, section and year). It enables
+ * the location of a unit.
+ */
 public class Teaching
 {
     private String field;
     private String section;
-    private short year;
+    private short  year;
+    
+    
     
     public Teaching(String field, String section, short year)
     {
@@ -12,6 +19,8 @@ public class Teaching
 	this.section = section;
 	this.year    = year;
     }
+    
+    
     
     /**
      * Returns the year when the Teaching was created
@@ -32,10 +41,11 @@ public class Teaching
     { return this.field; }
     
     /**
-     * Returns the subpath of this Teaching, ie field/section/year/
+     * Returns the subpath of this Teaching, ie field/section/year/(on *nix)
      */
     public String getSubPath()
-    { return this.field+this.section+this.year; }
+    { return this.field+File.separator+this.section+File.separator+this.year; }
+    
     
     
     /**
