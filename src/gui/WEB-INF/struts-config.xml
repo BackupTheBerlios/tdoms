@@ -30,10 +30,11 @@
     <action    path="/subscribe" 
       type="account.SubscribeAction"
       name="subscribeForm"
-      validate="true"			   
-      input="/erreur.html"
+      validate="true"
       scope="session">
       <forward name="success" path="/success.html"/>
+      <forward name="error" path="/error.html"/>
+      <forward name="errorsys" path="/errorsys.html"/>
     </action>
     
 <!--	<action    path="/admin/addFormBean"
