@@ -14,6 +14,10 @@ public class DBI{
     private String dbHostName;
     private int dbPort;
     
+    /**
+     * The DBI constructor.
+     * @param host, @param port, @param name, @param login, @param passwd: The attribute of the database.
+     */
     public DBI(String host, int port, String name, String login, String passwd){
 
 	this.dbName = name;
@@ -22,41 +26,88 @@ public class DBI{
 	this.dbHostName = host;
 	this.dbPort = port;
     }
-
+    /**
+     * Returns the name of the database.
+     * @return String.
+     */
     public String getDBName(){
 	return dbName;
     }
-
+    
+    /**
+     * Returns the login of the owner of the database.
+     * @return String.
+     */
     public String getDBLogin(){
 	return dbLogin;
     }
 
+    /**
+     * Returns the password of the owner of the database.
+     * @return String.
+     */
     public String getDBPasswd(){
 	return dbPasswd;
     }
-
+    
+    /**
+     * Returns the name of the server host of the database.
+     * @return String.
+     */
     public String getDBHostName(){
 	return dbHostName;
     }
+    
+     /**
+     * Returns the port of the server host of the database.
+     * @return int.
+     */
+    public int getDBPort(){
+	return dbPort;
+    }
 
+    /**
+     * Set the name of the database.
+     * @param name.
+     */
     public void setDBName(String name){
 	this.dbName = name;
     }
-
+    
+    /**
+     * Set the login of the owner of the database.
+     * @param login.
+     */
     public void setDBLogin(String login){
 	this.dbLogin = login;
     }
-
+    
+    /**
+     * Set the password of the owner of the database.
+     * @param passwd.
+     */
     public void setDBPasswd(String passwd){
 	this.dbPasswd = passwd;
     }
 
+    /**
+     * Set the name of the server host of the database.
+     * @param name.
+     */
     public void setDBHostName(String hostname){
 	this.dbHostName = hostname;
     }
-
+    
     /**
-     *Connection à la base de donnée 
+     * Set the port of the server host of the database.
+     * @param port.
+     */
+    public void setDBPort(int port){
+	this.dbPort = port;
+    }
+    
+    /**
+     * Establish the connection to the database
      */
     public void establishConnection(){
 
@@ -78,50 +129,69 @@ public class DBI{
 	}catch(SQLException e){ System.out.println("La connection ne passe pas");}
     }
 
+
+    public boolean reqSimple(String query){
+	boolean res = false;
+	try{
+	    Statement stmt = connect.createStatement();
+	    res = stmt.execute(query);
+	    stmt.close();
+	}catch(SQLException e){ System.out.println("Erreur lors de l'execution de la requête: "+query);}
+	return res;
+    }
+    
     /**
-     * Execution d'une requête qui modifie la BDD mais qui ne retourne rien.
-     * Il s'agit de requête du genre CREATE, INSERT, UPDATE, ALTER...
+     * Execution of a query which modify the database but doens't return anything.
+     * It could be a query like CREATE, INSERT, UPDATE, ALTER...
+     * @param query: The query to be executed.
      */
     public void reqUpdate(String query){
 	try{
 	    Statement stmt = connect.createStatement();
 	    stmt.executeUpdate(query); 
+	    stmt.close();
 	}catch(SQLException e){ System.out.println("Erreur lors de l'execution de la requête: "+query);}
     }
 
     /**
-     * Execution d'une requête qui récupere des tuples dans la BDD mais qui
-     * ne la modifie pas. Notamment pour un SELECT...
+     * Execution of a query to get some lines from the database but doens't modify it.
+     * This metod would be most used for queries like SELECT...
+     * @param query: The query to be executed.
+     * @return a ResultSet containning the lines or null.
      */
     public ResultSet reqQuery(String query){
 	ResultSet res = null;
 	try{
 	    Statement stmt = connect.createStatement();
 	    res = stmt.executeQuery(query); 
+	    stmt.close();
 	}catch(SQLException e){ System.out.println("Erreur lors de l'execution de la requête: "+query);}
 	return res;
     }
     
+    /**
+     * Close the connection to the database.
+     */
     public void disconnect(){
 	try{
 	    connect.close();
-	}catch(SQLException e){ e.printStackTrace();System.out.println("La connection ne passe pas");}
+	}catch(SQLException e){ e.printStackTrace();System.out.println("La connection ne s'est pas fermée");}
     }
-
-    public void create(){
+    
+    public void createTable(){
 	try{
 	    Statement stmt = connect.createStatement();
-	    String createString = "create table COFFEES " +
-		"(COF_NAME VARCHAR(32), " +
-		"SUP_ID INTEGER, " +
-		"PRICE FLOAT, " +
-		"SALES INTEGER, " +
-		"TOTAL INTEGER)";
-	    stmt.executeUpdate(createString); 
+	    stmt.executeUpdate( "CREATE TABLE ACCOUNT ("  +
+				"name        VARCHAR (20) NOT NULL, "    +
+				"login       VARCHAR (10)  NOT NULL, "    +
+				"passwd      VARCHAR (10) NOT NULL,"     +
+				"rights      INTEGER      NOT NULL, "    +
+				"PRIMARY KEY ( login )"                  +
+				")" );
 	}catch(SQLException e){ e.printStackTrace();System.out.println("La connection ne passe pas");}
     }
 
-    
+    /*
     public static void main(String [] args) throws Exception{
 	
 	DBI toto = new DBI("sqletud.univ-mlv.fr",5432,"rtchuitc","rtchuitc","papa");
@@ -134,5 +204,6 @@ public class DBI{
 	}
 	toto.disconnect();
     }
+    */
 }
 
