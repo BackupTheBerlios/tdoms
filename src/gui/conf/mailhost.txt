@@ -1,0 +1,4 @@
+etudiant.univ-mlv.fr
+
+Ce fichier contient l'adresse smtp de votre système de mail. Si
+l'envoi de mail ne fonctionne pas, il se peut que l'adresse soit erronée.
