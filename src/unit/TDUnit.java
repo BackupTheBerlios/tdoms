@@ -1,18 +1,35 @@
 import java.util.ArrayList;
+import java.util.ListIterator;
+import java.io.File;
 
+/**
+   CE QUI MANQUE:
+   -description XML
+ */
+/**
+ * This object represents a TD unit. A TDUnit is most commonly a set of exercises.
+ */
 public class TDUnit extends MultipleUnit
 {
     /* List of all the Single units contained in this object */
     private ArrayList list_elements;
     
     
-    
+
+    /**
+     * Creates a TD unit with the given parameters.
+     * <code>list_elements</code> can be null. In this case, an ArrayList
+     * reference is assigned to it.
+     */
     public TDUnit(String title, String description, String file_name,
 		  ArrayList keyword_list, Teaching location,
 		  ArrayList list_elements)
     {
 	super(title, description, file_name, keyword_list, location);
-	this.list_elements = list_elements;
+	if(list_elements == null)
+	    this.list_elements = new ArrayList();
+	else
+	    this.list_elements = list_elements;
     }
     
     
@@ -50,10 +67,33 @@ public class TDUnit extends MultipleUnit
     { return (SingleUnit)this.list_elements.get(index); }
     
     /**
+     * Returns an iterator that enables to get all the element of this Unit
+     * @return the iterator
+     */
+    public ListIterator getElementIterator()
+    { return this.list_elements.listIterator(); }
+    
+    /**
+     * Returns an iterator that enables to get all the element of this Unit
+     * beginning from index
+     * @param index: index of the first element to be returned from the list
+     * iterator (by a call to the next method)
+     * @return the iterator
+     */
+    public ListIterator getElementIterator(int index)
+    { return this.list_elements.listIterator(index); }
+    
+    /**
      * Returns the description of a unit in the XML form.
      */
     public String getXMLDescription()
     { return "TDUnit: VOID"; }
+    
+    /**
+     * Returns the teaching location of a td unit.
+     */
+    public String getTeachingLocation()
+    { return getUnitTeachingLocation()+File.separator+"tdunit"+File.separator; }
     
     
     
