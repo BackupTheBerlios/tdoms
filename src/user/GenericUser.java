@@ -1,3 +1,4 @@
+package user;
 public class GenericUser{
     /**
      * Rights of that user.

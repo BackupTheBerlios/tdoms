@@ -1,3 +1,4 @@
+package user;
 public class Etudiant extends GenericUser{
 
     public Etudiant(int r){

@@ -1,3 +1,4 @@
+package user;
 import java.util.ArrayList;
 
 public class Enseignant extends SuperUser {
@@ -5,8 +6,8 @@ public class Enseignant extends SuperUser {
     /* List of all the units created by this teacher */
     private ArrayList myUnits;
 
-    public Enseignant(int r, String l, String p){
-	super(r,l,p);
+    public Enseignant(int r, String n,String l, String p, String e){
+	super(r,n,l,p,e);
 	this.myUnits = new ArrayList();	
     }
 
