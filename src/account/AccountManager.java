@@ -1,3 +1,4 @@
+package test;
 import java.sql.*;
 
 /**
@@ -27,15 +28,15 @@ public class AccountManager{
 
 	dbh.establishConnection();
 	
-	String tmp = "SELECT * FROM "+acctable+" WHERE login='"+login.trim();+"';";
+	String tmp = "SELECT * FROM "+acctable+" WHERE login='"+login.trim()+"';";
 	System.out.println("Requete --> "+tmp);
 	if(!dbh.reqSimple(tmp)){
-	    System.out.println("An entry with the login ->"+login.trim();+"<- already exist in the database");
+	    System.out.println("An entry with the login ->"+login.trim()+"<- already exist in the database");
 	    dbh.disconnect();
 	    return false;
 	}
 	
-	String query = "INSERT INTO "+acctable+" VALUES ('"+name.trim();+"','"+login.trim();+"','"+passwd.trim();+"','"+email.trim();+"');";
+	String query = "INSERT INTO "+acctable+" VALUES ('"+name.trim()+"','"+login.trim()+"','"+passwd.trim()+"','"+email.trim()+"');";
 	dbh.reqUpdate(query);
 	dbh.disconnect();
 	return true;
@@ -46,7 +47,7 @@ public class AccountManager{
      * @param login: The login of the user.
      */
     public void deleteAccount(String login){
-	String query = "DELETE FROM "+acctable+" WHERE (login='"+login.trim();+"');";
+	String query = "DELETE FROM "+acctable+" WHERE (login='"+login.trim()+"');";
 	dbh.establishConnection();
 	dbh.reqUpdate(query);
 	dbh.disconnect();
@@ -59,8 +60,8 @@ public class AccountManager{
      * @param newpasswd: His new password.
      */
     public void updateAccount(String login, String newpasswd, String newemail){
-	String query = "UPDATE "+acctable+" SET passwd = '"+newpasswd.trim();+"',email = '"+newemail.trim();+
-	    "' WHERE (login='"+login.trim();+"');";
+	String query = "UPDATE "+acctable+" SET passwd = '"+newpasswd.trim()+"',email = '"+newemail.trim()+
+	    "' WHERE (login='"+login.trim()+"');";
 	dbh.establishConnection();
 	dbh.reqUpdate(query);
 	dbh.disconnect();
