@@ -32,9 +32,9 @@
       name="subscribeForm"
       validate="true"
       scope="session">
-      <forward name="success" path="/success.html"/>
-      <forward name="error" path="/error.html"/>
-      <forward name="errorsys" path="/errorsys.html"/>
+      <forward name="success" path="/index.jsp?pg=messages/info_envoi.jsp"/>
+      <forward name="unauthorized" path="/index.jsp?pg=messages/unauthorized.jsp"/>
+      <forward name="errorsys" path="/index.jsp?pg=messages/internal_error.jsp"/>
     </action>
     
 <!--	<action    path="/admin/addFormBean"
