@@ -3,14 +3,15 @@
 -->
 <%
 String mode = request.getParameter("mode");
-
-String result = request.getParameter("hidden[result]");
-if(result == null) result = new String("false");
+if(mode == null) mode = "td";
 
 String title = "";
 if(mode.equals("ex")) title = "Rechercher un exercice";
 if(mode.equals("td")) title = "Rechercher un TD";
 
+
+String result = request.getParameter("hidden[result]");
+if(result == null) result = new String("false");
 %>
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -35,9 +36,9 @@ if(mode.equals("td")) title = "Rechercher un TD";
       <tbody>
         <tr bgcolor="#CCCCCC"> 
               <td colspan="2" align="center" valign="top">
-			  <form method="post" action="<%= response.encodeURL("popup.jsp?pg=TD/search.jsp&mode=" + mode ) %>">
+			  <form method="post" action="<%= response.encodeURL("."+request.getServletPath()+"?pg=TD/search.jsp&mode=" + mode ) %>">
            <input type="hidden" name="hidden[result]" value="true">
-                  <table width="450" border="0" cellspacing="2">
+                  <table width="460" border="0" cellspacing="2">
                   <tr>
                     <td align="left">
 					    <select name="[subject]" class="userbox">
@@ -69,9 +70,9 @@ if(mode.equals("td")) title = "Rechercher un TD";
                   </tr>
 				</table>
 				</form>
-                <form method="post" action="<%= response.encodeURL("popup.jsp?pg=TD/search.jsp&mode="+ mode ) %>" >
+                <form method="post" action="<%= response.encodeURL("."+ request.getServletPath() +"?pg=TD/search.jsp&mode="+ mode ) %>" >
                 <input type="hidden" name="hidden[result]" value="true">
-				  <table width="450">
+				  <table width="460">
                      
                   <tr>
                     <td align="left" ><input name="data[keywords]" type="text" class="userbox" value="Mots-cl&eacute;s" size="60" maxlength="80"></td>

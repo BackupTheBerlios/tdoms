@@ -55,16 +55,16 @@
                     
                     
                     <tr>
-                      <td><textarea name="data[sujet]" cols="80" rows="10" class="userbox" id="synopsis"></textarea></td>
+                      <td class="text">Entrez votre sujet ici:<br/><textarea name="data[sujet]" cols="80" rows="10" class="userbox" id="synopsis"></textarea></td>
                     </tr>
                     <tr>
                       <td>
-					  <input type="file" class="userbox" size="40">
+					       <input type="file" class="userbox" size="40">
                       <input name="upload[sujetPic]" type="submit" class="userbox" id="upload[subject]" value="T&eacute;l&eacute;charger">
 					  </td>
                     </tr>
                     <tr>
-                      <td><textarea name="data[correction]" cols="80" rows="10" class="userbox" id="synopsis"></textarea></td>
+                      <td class="text">Entrez la correction ici (facultatif):<br/><textarea name="data[correction]" cols="80" rows="10" class="userbox" id="synopsis"></textarea></td>
                     </tr>
                     <tr>
                       <td>

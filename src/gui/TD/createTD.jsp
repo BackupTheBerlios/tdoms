@@ -1,6 +1,9 @@
+<jsp:include page="../checklogin.jsp" />
 <!--
 <link href="../resources/L5.css" rel="stylesheet" type="text/css">
 -->
+
+
 
 <SCRIPT LANGUAGE="JavaScript">
 <!--
@@ -73,7 +76,7 @@ window.location = url;
                       <input name="createTD" type="button" class="userbox" onClick="showPopUp('TD/createEx.jsp')" value="Cr&eacute;er un exercice"></td>
                     </tr>
                     <tr>
-                      <td><textarea name="data[synopsis]" cols="80" rows="10" readonly="readonly" class="userbox" id="synopsis"></textarea></td>
+                      <td class="text">Synopsis des exercices:<br/><textarea name="data[synopsis]" cols="80" rows="10" readonly="readonly" class="userbox" id="synopsis"></textarea></td>
                     </tr>
                     <tr>
                       <td align="right"><input name="input[validateTD]" type="submit" class="userbox" id="input[validateTD]" value="OK">
