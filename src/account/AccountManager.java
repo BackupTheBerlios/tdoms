@@ -1,5 +1,8 @@
-package test;
+package account;
+
 import java.sql.*;
+import java.util.*;
+import database;
 
 /**
  * This class will manage the account of the users in the table nammed "ACCOUNT"
@@ -65,5 +68,27 @@ public class AccountManager{
 	dbh.establishConnection();
 	dbh.reqUpdate(query);
 	dbh.disconnect();
+    }
+
+    /**
+     * Check the login and the passwd of the user in the database, and return his name
+     * if everything's ok, return NULL otherwise
+     * @param login: The login of the user,
+     * @param passwd: The password of the user
+     * @return the name of the user, NULL otherwise.
+     */
+    public String checkLogon(String login, String passwd){
+	String query = "SELECT * FROM " +acctable+ " WHERE login='"+login.trim()+"';";
+	dbh.establishConnection();
+	HashMap res = dbh.reqQuery(query);
+	dbh.disconnect();
+
+	if (res == null)
+	    return false;
+	String real_passwd = null;
+	real_passwd = (String) res.get("passwd");
+	if(real_passwd.equals(passwd.trim()))
+	    return (String) res.get("name").trim();
+	return null;
     }
 }

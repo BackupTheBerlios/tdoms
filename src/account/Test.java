@@ -1,3 +1,7 @@
+package account;
+
+import database;
+
 public class Test{
 
     public static void main(String [] args){
@@ -7,11 +11,12 @@ public class Test{
 	//dbh.createTable();
 
 	AccountManager am = new AccountManager(dbh,"account");
-	am.deleteAccount("tatayoyo");
-	boolean toto = am.addNewAccount("Tymeng","tatayoyo","eastcoast","tyty@vachier.com");
-	System.out.println(toto);
+	//am.deleteAccount("tatayoyo");
+	boolean toto ;//= am.addNewAccount("Mel","emlissa","paola","meme@vachier.com");
+	//System.out.println(toto);
 
-	am.updateAccount("tatayoyo","grumble","pistolty@vachier.com");
-	dbh.disconnect();
+	//am.updateAccount("tatayoyo","grumble","pistolty@vachier.com");
+	toto = am.checkLogon("tatayoyo","eastcoast");
+	System.out.println(toto);
     }
 }
