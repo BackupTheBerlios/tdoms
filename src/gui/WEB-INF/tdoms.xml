@@ -1,0 +1,28 @@
+<?xml version="1.0" ?>
+<project name="tdoms" default="compile">
+<description>Compiles and executes the project</description>
+  <target name="init">
+     <mkdir dir="classes/archive" />
+  </target>
+
+  <target name="compile" depends="init"
+	  description="Creation de repertoires">
+    <javac srcdir="src"
+	   destdir="classes" />
+  </target>
+  <!--
+  <target name="archive" depends="compile"
+  description="Creation d'une archive JAR">
+  <jar destfile="classes/archive/reseau.jar"
+  basedir="classes"
+  manifest="src/META-INF/MANIFEST.MF"/>
+  </target>
+  -->
+
+  <target name="clean" depends="init"
+	  description="Menage">
+    <delete dir="classes/fr" />
+    <delete dir="classes/archive" />
+  </target>
+
+</project>
