@@ -1,23 +1,30 @@
+import java.util.ArrayList;
+import java.util.ListIterator;
 import java.security.InvalidParameterException;
 
-public class Unit
+public abstract class Unit
 {
     //Attributes
-    private String title;
-    private String description;
-    private String file_name;
+    private String    title;
+    private String    description;
+    private ArrayList keyword_list;
+    private Teaching  location;
+    private String    file_name;
     
     //Constructors
-    public Unit(String title, String description, String file_name)
+    public Unit(String title, String description, String file_name,
+		ArrayList keyword_list, Teaching location)
     {
-	this.title       = title;
-	this.description = description;
-	this.file_name   = file_name;
+	this.title        = title;
+	this.description  = description;
+	this.file_name    = file_name;
+	this.keyword_list = keyword_list;
+	this.location     = location;
     }
     
-    public Unit(){}
+    //public Unit(){ this.keyword_list = new ArrayList(); }
     
-    //getters    
+    //-------------------getters    
     /**
      * @return the unit's title
      */
@@ -36,7 +43,19 @@ public class Unit
     public String getFileName()
     { return this.file_name; }
     
-    //setters
+    /**
+     * Returns this unit's teaching location, ie field/section/year/
+     */
+    public String getTeachingLocation()
+    { return this.location.getSubPath(); }
+    
+    /**
+     * Returns the description of a unit in the XML form.
+     */
+    public abstract String getXMLDescription();
+    
+    
+    //-------------------setters
     /**
      * Sets the unit's title
      */
@@ -63,4 +82,47 @@ public class Unit
 	if(this.file_name != null)this.file_name = new_file_name;
 	else throw new InvalidParameterException("Parameter mustn't be null");
     }
+    
+    /**
+     * Sets the teaching location.
+     * If field or section is void or null, they won't be respectively updated.
+     * If year >= 1980 and year < 3000, the year will be updated.
+     */
+    public void setTeachingLocation(String field, String section, short year)
+    {
+	if(field != null && !field.equals(""))
+	    this.location.setField(field);
+	if(section != null && !section.equals(""))
+	    this.location.setSection(section);
+	if(year >= 1980 && year < 3000)
+	    this.location.setYear(year);
+    }
+    
+    /**
+     * Sets the teaching location.
+     */    
+    public void setTeachingLocation(Teaching location)
+    {
+	if(location != null)
+	    this.location = location;
+	else throw new InvalidParameterException("Parameter mustn't be null");
+    }
+    
+    
+    /**
+     * Returns an iterator that enables to get all the keyword of this Unit
+     * @return the iterator
+     */
+    public ListIterator getKeywordIterator()
+    { return this.keyword_list.listIterator(); }
+    
+    /**
+     * Returns an iterator that enables to get all the keyword of this Unit
+     * beginning from index
+     * @param index: index of the first element to be returned from the list
+     * iterator (by a call to the next method)
+     * @return the iterator
+     */
+    public ListIterator getKeywordIterator(int index)
+    { return this.keyword_list.listIterator(); }
 }

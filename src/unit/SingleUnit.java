@@ -6,13 +6,14 @@ public abstract class SingleUnit extends Unit
     private String text;
     private ArrayList images_list;
     
-    public SingleUnit()
-    {
-	this.images_list = new ArrayList();
-    }
     
-    public SingleUnit(String text)
+    
+    public SingleUnit(String text, //for this class
+		      String title, String description, String file_name,//parameters for super class
+		      ArrayList keyword_list, Teaching location)
     {
+	super(title, description, file_name, keyword_list, location);
+	
 	this.images_list = new ArrayList();
 	this.text = text;
     }
@@ -22,6 +23,13 @@ public abstract class SingleUnit extends Unit
      */
     public String getText()
     { return this.text; }
+    
+    /**
+     * Returns the description of a unit in the XML form.
+     */
+    public abstract String getXMLDescription();
+    
+    public abstract String getTeachingLocation();
     
     
     /**

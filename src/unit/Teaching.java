@@ -31,6 +31,12 @@ public class Teaching
     public String getField()
     { return this.field; }
     
+    /**
+     * Returns the subpath of this Teaching, ie field/section/year/
+     */
+    public String getSubPath()
+    { return this.field+this.section+this.year; }
+    
     
     /**
      * Sets the year when the Teaching was created
