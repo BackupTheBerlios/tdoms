@@ -111,8 +111,9 @@ public class DBI{
     
     /**
      * Establish the connection to the database
+     * @return true if everything went well, false otherwise.
      */
-    public void establishConnection(){
+    public boolean establishConnection(){
 
 	/**
 	 *On construit l'url de la base de donnée avec la syntaxe suivante:
@@ -123,13 +124,14 @@ public class DBI{
 	//Chargement du driver !!
 	try{
 	    Class.forName("org.postgresql.Driver");
-	}catch(Exception e){ System.err.println("Erreur de chargement du driver!!");}
+	}catch(Exception e){ System.err.println("Erreur de chargement du driver!!"); return false; }
 
 	//Connection a la BDD
 	try{
 	    connect = DriverManager.getConnection(url,dbLogin,dbPasswd);
-	    System.out.println("Connection établie");	    
-	}catch(SQLException e){ System.out.println("La connection ne passe pas");}
+	    System.out.println("Connection établie");
+	}catch(SQLException e){ System.out.println("La connection ne passe pas"); return false; }
+	return true;
     }
 
     /**
@@ -148,17 +150,22 @@ public class DBI{
 	return res;
     }
     
+    
     /**
      * Execution of a query which modify the database but doens't return anything.
      * It could be a query like CREATE, INSERT, UPDATE, ALTER...
-     * @param query: The query to be executed.
+     * @param query The query to be executed.
+     * @return true if everything went well, false otherwise.
      */
-    public void reqUpdate(String query){
+    public boolean reqUpdate(String query){
 	try{
 	    Statement stmt = connect.createStatement();
-	    stmt.executeUpdate(query); 
+	    stmt.executeUpdate(query);
 	    stmt.close();
-	}catch(SQLException e){ System.out.println("Erreur lors de l'execution de la requête: "+query);}
+	    return true;
+	}catch(SQLException e)
+	    { System.out.println("Erreur lors de l'execution de la requête: "+query); }
+	return false;
     }
 
     /**
@@ -200,26 +207,46 @@ public class DBI{
 	return resMap;
     }
     
+
+    /**
+     * Executes a simple query.
+     * This method would be most used for queries like SELECT...
+     * @param query the wanted query (ex: select * from tatayoyo)
+     * @return the result of the query. If something went wrong or if there are
+     * no results, returns null.
+     */
+    public ResultSet reqQuery(String query){
+	ResultSet res = null;
+	try{
+	    Statement stmt = connect.createStatement();
+	    res = stmt.executeQuery(query);
+	    if(res.getFetchSize()==0)return null;
+	    stmt.close();
+	}catch(SQLException e)
+	    { System.err.println("Erreur lors de l'execution de la requête: "+query);}
+	return res;
+    }
+        
+    
     /**
      * Close the connection to the database.
      */
     public void disconnect(){
 	try{
 	    connect.close();
-	}catch(SQLException e){ e.printStackTrace();System.out.println("La connection ne s'est pas fermée");}
+	}catch(SQLException e){ e.printStackTrace(); }
     }
     
     public void createTable(){
 	try{
 	    Statement stmt = connect.createStatement();
 	    stmt.executeUpdate( "CREATE TABLE ACCOUNT ("  +
-				"name        VARCHAR (30) NOT NULL, "    +
-				"login       VARCHAR (30) NOT NULL, "    +
-				"passwd      VARCHAR (30) NOT NULL,"     +
-				"email       VARCHAR (40) NOT NULL,"     +
+				"login       VARCHAR (10)  NOT NULL, "    +
+				"passwd      VARCHAR (10) NOT NULL,"     +
+				"rights      INTEGER      NOT NULL, "    +
 				"PRIMARY KEY ( login )"                  +
 				")" );
-	}catch(SQLException e){ e.printStackTrace();System.out.println("La connection ne passe pas");}
+	}catch(SQLException e){ e.printStackTrace();System.out.println("La connexion ne passe pas");}
     }
 
     /*

@@ -1,8 +1,7 @@
 package account;
 
 import java.sql.*;
-import java.util.*;
-import database;
+import database.DBI;
 
 /**
  * This class will manage the account of the users in the table nammed "ACCOUNT"
@@ -19,12 +18,48 @@ public class AccountManager{
 	this.acctable = table;
     }
 
+
     /**
      * Add a new account in the table 
-     * @param name: The name of the user,
-     * @param login: The login of the user,
-     * @param passwd: The password of the user,
-     * @param email: The email address of the user.
+     * @param name The name of the user,
+     * @param login The login of the user,
+     * @param passwd The password of the user,
+     * @param email The email address of the user.
+     * @return false if the execution didn't succeed or if there's already an account with that login, true otherwise.
+     */
+    public boolean addNewAccountNoCheck(int rights, String login, String passwd, String mail){
+	dbh.establishConnection();
+	
+	//String query = "INSERT INTO "+acctable+" VALUES ('"+login.trim()+"','"+passwd.trim()+"','"+email.trim()+"', '"+rights+");";
+	String query = "insert into account_tdoms (login, passwd, mail, rights) values('"+login+"', '"+passwd+"', '"+mail+"', "+rights+");";
+	boolean res = dbh.reqUpdate(query);
+	dbh.disconnect();
+	return res;
+    }
+
+    
+    public boolean isAccountCreated(String email){
+
+	dbh.establishConnection();
+	
+	String tmp = "SELECT * FROM "+acctable+" WHERE mail='"+email.trim()+"';";
+	ResultSet res = dbh.reqQuery(tmp);
+	//try{
+	if(res!=null){
+	    dbh.disconnect();
+	    return true;
+	}
+	//}catch(SQLException sqle){}
+	dbh.disconnect();
+	return false;
+    }
+    
+    /**
+     * Add a new account in the table 
+     * @param name The name of the user,
+     * @param login The login of the user,
+     * @param passwd The password of the user,
+     * @param email The email address of the user.
      * @return false if the execution didn't succeed or if there's already an account with that login, true otherwise.
      */
     public boolean addNewAccount(String name, String login, String passwd, String email){
@@ -58,9 +93,9 @@ public class AccountManager{
 
     /**
      * Update the password and the email address of an user.
-     * @param login: The login of the user,
-     * @param newemail: His new email address,
-     * @param newpasswd: His new password.
+     * @param login The login of the user,
+     * @param newemail His new email address,
+     * @param newpasswd His new password.
      */
     public void updateAccount(String login, String newpasswd, String newemail){
 	String query = "UPDATE "+acctable+" SET passwd = '"+newpasswd.trim()+"',email = '"+newemail.trim()+
@@ -73,22 +108,22 @@ public class AccountManager{
     /**
      * Check the login and the passwd of the user in the database, and return his name
      * if everything's ok, return NULL otherwise
-     * @param login: The login of the user,
-     * @param passwd: The password of the user
+     * @param login The login of the user,
+     * @param passwd The password of the user
      * @return the name of the user, NULL otherwise.
      */
-    public String checkLogon(String login, String passwd){
+    public String checkLogon(String login, String passwd)throws SQLException{
 	String query = "SELECT * FROM " +acctable+ " WHERE login='"+login.trim()+"';";
 	dbh.establishConnection();
-	HashMap res = dbh.reqQuery(query);
+	ResultSet res = dbh.reqQuery(query);
 	dbh.disconnect();
-
+	
 	if (res == null)
-	    return false;
+	    return null;
 	String real_passwd = null;
-	real_passwd = (String) res.get("passwd");
+	real_passwd = res.getString("passwd");
 	if(real_passwd.equals(passwd.trim()))
-	    return (String) res.get("name").trim();
+	    return res.getString("name");
 	return null;
     }
 }

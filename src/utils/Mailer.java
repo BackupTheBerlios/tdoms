@@ -9,9 +9,9 @@ import java.io.FileReader;
 
 public class Mailer
 {
-    private void setProperties(Properties props)throws IOException
+    private void setProperties(Properties props, String mailHostFile)throws IOException
     {	
-	BufferedReader file = new BufferedReader(new FileReader("../../../conf/mailhost.txt"));
+	BufferedReader file = new BufferedReader(new FileReader(mailHostFile));
 	String mailhost = file.readLine();
 	file.close();
 	if(mailhost==null)
@@ -25,11 +25,11 @@ public class Mailer
      * Sends a mail with the given arguments. The smtp mail host is automatically read
      * in the APP_PATH/conf/mailhost.txt file.
      */
-    public void sendMail(String sfrom, String sto, String ssubject, String stext)
+    public void sendMail(String sfrom, String sto, String ssubject, String stext, String mailHostFile)
 	throws MessagingException, AddressException, IOException
     {
 	Properties props = new Properties();
-	setProperties(props);
+	setProperties(props, mailHostFile);
 	
 	Session s = Session.getInstance(props, null);
 	
@@ -37,7 +37,7 @@ public class Mailer
 	InternetAddress from = new InternetAddress(sfrom);
 	message.setFrom(from);
 	InternetAddress to = new InternetAddress(sto);
-	message.addRecipient(Message.RecipientType.TO, from);
+	message.addRecipient(Message.RecipientType.TO, to);
 	message.setSubject(ssubject);
 	message.setText(stext);
 	Transport.send(message);
@@ -48,8 +48,8 @@ public class Mailer
 	try{
 	    String addressMail = "matthieubriend@club-internet.fr";
 	    String text = "Bonjour\n\n\tNous avons reçu une demande d'inscription au système de gestion des documents d'enseignement. Si vous avez demandé l'inscription, veuillez vous rendre à l'adresse suivante:\n\tXXXXX\n\n\tVotre inscription au système ne sera effectif que lorsque vous vous serez rendu sur cette page. Le login et le mot de passe de votre compte seront alors:\n\tLogin: YYYYY\n\tMot de passe: ZZZZZ\n\nCordialement,\n le système T-doms";
-	    new Mailer().sendMail("mbriend@etudiant.univ-mlv.fr",
-				  addressMail, "Confirmation de l'inscription", text);
+	    new Mailer().sendMail("mbriend@etudiant.univ-mlv.fr", addressMail,
+				  "Confirmation de l'inscription", text, "../../../conf/mailhost.txt");
 	}catch(Exception e)
 	    {
 		System.err.println("Error: "+e.getMessage());
