@@ -9,12 +9,15 @@
       <td align="left" valign="top">&nbsp;</td>
       <td width="100%" align="right" valign="middle"> 
       <span class="pagetitle"><br/>
-        GERER VOTRE COMPTE</span>  
+        GERER VOS ENSEIGNEMENTS</span>  
       </td>
     </tr>
   </tbody>
 </table>
 <br>
+
+
+
 
 <!---  Section  --->
 <table cellpadding="0" cellspacing="0" border="0" bgcolor="#000000" width="100%">
@@ -24,14 +27,14 @@
       <table cellpadding="4" cellspacing="1" border="0" width="100%">
       <tbody>
         <tr>
+          <td width="33%" align="middle" valign="middle" bgcolor="#CC9966" class="titleActive">
+          <b>Mes TDs</b>
+		    </td>
           <td width="33%" align="middle" valign="middle" bgcolor="#003366" class="title">
-          <a href="<%= response.encodeURL("index.jsp?pg=teacher/manageTD.jsp") %>" class="menumgr"><b>Mes TDs</b></a>
-		  </td>
-          <td width="33%" align="middle" valign="middle" bgcolor="#003366" class="title">
-		  <a href="<%= response.encodeURL("index.jsp?pg=teacher/manageEx.jsp") %>" class="menumgr"><b>Mes Exercices</b></a>
+		    <a href="<%= response.encodeURL("index.jsp?pg=teacher/manageEx.jsp") %>" class="menumgr"><b>Mes Exercices</b></a>
           </td>
-		  <td width="33%" align="middle" valign="middle" bgcolor="#CC9966" class="titleActive">
-		  <b>Mes enseignements</b>
+		    <td width="33%" align="middle" valign="middle" bgcolor="#003366" class="title">
+		    <a href="<%= response.encodeURL("index.jsp?pg=teacher/manageSubject.jsp") %>" class="menumgr"><b>Mes enseignements</b></a>
           </td>
         </tr>
       </tbody>
@@ -42,9 +45,16 @@
 </table>
 <br>
 
-
 <!------------------------------------- DEBUT LISTING TD ----------------------------------------->
 <%
+
+/*Enumeration listing = une enumeration;
+
+while(listing.hasMoreElements())
+{  
+  String listing = (String)listing.nextElement();
+}
+*/
 
 boolean light = true;
 String color = "#DDDDDD";
@@ -69,12 +79,15 @@ for( int i=0; i<10; i++)
       <td align="center">
       <table cellpadding="4" cellspacing="1" border="0" width="100%">
           <tbody>
-            <tr bgcolor="<%= color %>"> 
+            <tr bgcolor="<%= color %>" > 
               <td width="80%" align="left" valign="top" class="text">
-			  Enseignement <%= i %> : Java<br/>
+			  TD <%= i %> - Titre<br/>
 			  <span class="description">Description</span></td>
               <td width="20%" align="center" valign="top" class="text">
-			  [<a href="<%= response.encodeURL("orgnaize.jsp?subject=Java") %>" >Organiser</a>]</td>
+			  [<a href="<%= response.encodeURL("index.jsp?pg=TD/display.jsp?mode=PDF") %>" >PDF</a>]<br>
+              [<a href="<%= response.encodeURL("index.jsp?pg=TD/display.jsp?mode=HTML") %>">HTML</a>]<br>
+              [Modifier]<br>
+              [Supprimer]</td>
             </tr>
           </tbody>
       </table>
@@ -83,6 +96,7 @@ for( int i=0; i<10; i++)
   </tbody>
 </table>
 <br>
-<% } %>                                    
+<% } %>
+
 
 <!---------------------------------------- FIN LISTING TD ----------------------------------------->

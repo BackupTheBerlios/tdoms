@@ -30,12 +30,12 @@
                     <tr>
                       <td width="69">mail:</td>
                       <td width="79">
-                    <input type="text" name="input[mail]" maxlength="100" size="15" class="userboxinput">
+                    <input type="text" name="data[mail]" maxlength="100" size="15" class="userboxinput">
                     <input type="hidden" name="ref" value="%2F">
 					</td>
                       <td width="12">@</td>
                       <td width="172">
-					  <select name="select" class="userboxinput">
+					  <select name="data[domain]" class="userboxinput">
                           <option>univ-mlv.fr</option>
                           <option>igm.univ-mlv.fr</option>
                           <option>monge.univ-mlv.fr</option>
@@ -45,13 +45,13 @@
                     <tr>
                       <td>login d&eacute;sir&eacute;</td>
                       <td colspan="3">
-					  <input type="text" name="input[login]" maxlength="100" size="15" class="userboxinput">
+					  <input type="text" name="data[login]" maxlength="100" size="15" class="userboxinput">
 					  </td>
                     </tr>
                     <tr>
                       <td>&nbsp;</td>
                       <td colspan="3">
-					  <input type="submit" name="submit" value="Valider" class="userboxinput">
+					  <input name="input[subscribe]" type="submit" value="Valider" class="userboxinput">
 					  </td>
                     </tr>
                   </table>
