@@ -1,0 +1,9 @@
+Pour pouvoir utiliser la classe DBI pour se connecter à la base de données, il
+faut le "driver" de PostGre. Celui que j'ai utilisé et qui est fourni est
+"pg73jdbc3.jar".
+
+Afin que cà marche vous devez télécharger ce driver et rajouter dans votre
+CLASSPATH le chemin d'accès au driver.
+
+NB: En rappel, le CLASSPATH se fait dans le fichier de configuration
+".bashrc", se trouvant à la racine de votre compte.
