@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN"
+          "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+
+<!--
+     This is the Struts configuration file for the example application,
+     using the proposed new syntax.
+-->
+
+<struts-config>
+  
+   
+  <!-- ========== Form Bean Definitions =================================== -->
+  <form-beans type="org.apache.struts.action.ActionFormBean">
+    <!-- Upload form bean  : On definit ce qui correspond a l'ActionForm-->
+    <form-bean name="subscribeForm" 
+      type="account.SubscribeForm"/> 
+  </form-beans>
+
+  <!-- ========== Global Forward Definitions ============================== -->
+  <global-forwards type="org.apache.struts.action.ActionForward">
+    <forward name="success" path="/success.html"/>
+  </global-forwards>
+
+  <!-- ========== Action Mapping Definitions ============================== -->
+  <action-mappings type="org.apache.struts.action.ActionMapping">
+    <!-- Process a user upload -->
+    <action    path="/subscribe" 
+      type="account.SubscribeAction"
+      name="subscribeForm"
+      validate="true"			   
+      input="/erreur.html"
+      scope="session">
+      <forward name="success" path="/success.html"/>
+    </action>
+    
+<!--	<action    path="/admin/addFormBean"
+               type="org.apache.struts.actions.AddFormBeanAction"/>
+    <action    path="/admin/addForward"
+               type="org.apache.struts.actions.AddForwardAction"/>
+    <action    path="/admin/addMapping"
+               type="org.apache.struts.actions.AddMappingAction"/>
+    <action    path="/admin/reload"
+               type="org.apache.struts.actions.ReloadAction"/>
+    <action    path="/admin/removeFormBean"
+               type="org.apache.struts.actions.RemoveFormBeanAction"/>
+    <action    path="/admin/removeForward"
+               type="org.apache.struts.actions.RemoveForwardAction"/>
+    <action    path="/admin/removeMapping"
+               type="org.apache.struts.actions.RemoveMappingAction"/> -->
+
+  </action-mappings>
+  
+  <!-- ========== Message Resources Definitions =========================== -->
+  
+  <message-resources parameter="ApplicationResources"/>
+  
+</struts-config>
+
