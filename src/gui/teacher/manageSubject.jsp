@@ -74,7 +74,7 @@ for( int i=0; i<10; i++)
 			  Enseignement <%= i %> : Java<br/>
 			  <span class="description">Description</span></td>
               <td width="20%" align="center" valign="top" class="text">
-			  [<a href="<%= response.encodeURL("orgnaize.jsp?subject=Java") %>" >Organiser</a>]</td>
+			  [<a href="<%= response.encodeURL("index.jsp?pg=teacher/organize.jsp&subject=Java") %>" >Organiser</a>]</td>
             </tr>
           </tbody>
       </table>
