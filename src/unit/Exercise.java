@@ -1,8 +1,16 @@
 import java.security.InvalidParameterException;
+import java.util.ArrayList;
+import java.io.File;
 
+/*
+  Ce qu'il reste a faire:
+  -description XML
+ */
 public class Exercise extends SingleUnit
 {
     private String correction;//To add images to the correction, use the SingleUnit class
+    
+    
     
     public Exercise(String correction,
 		    String text, String title, String description, String file_name,
@@ -13,13 +21,15 @@ public class Exercise extends SingleUnit
 	else throw new InvalidParameterException("Parameter mustn't be null");
     }
     
-    public Exercise() {}
+    
     
     public void setCorrection(String correction)
     {
 	if(correction != null) this.correction = correction;
 	else throw new InvalidParameterException("Parameter mustn't be null");
     }
+    
+    
     
     public String getCorrection()
     { return this.correction; }
@@ -34,5 +44,5 @@ public class Exercise extends SingleUnit
      * Returns the relative location of the teaching
      */
     public String getTeachingLocation()
-    { return super.getTeachingLocation()+"exercise/"; }
+    { return getUnitTeachingLocation()+File.separator+"exercise"+File.separator; }
 }
