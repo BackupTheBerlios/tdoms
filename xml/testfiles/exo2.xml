@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<exo> 
+  
+  <title>Creation d'une interface de saisie avec Swing</title>
+  
+  <keywords>
+    <key>frame</key>
+    <key>java</key>
+    <key>swing</key>
+  </keywords>
+  
+  <text>
+    <part>
+      Creer une nouvelle JFrame nommee "Decouverte" et ajouter dans son contentPane les composants suivants : 
+      un bouton (JButton)
+      un champ de texte (JTextField)
+      une zone de texte (JTextArea)
+    </part>
+    <part>Ajouter une bulle d'aide contextuelle (setToolTipText()) sur
+      le bouton.
+    </part>
+    <part>Rendre le bouton inoperant (setEnabled())
+    </part>
+    <part>Changer la couleur du texte et du fond du bouton (setForeground() et setBackground()).</part>
+    <part>Ajouter un texte dans le champ de texte et dans la zone de
+      texte. (setText())
+    </part>
+    <part>Rendre le champ de texte non editable (setEditable()))
+    </part>
+    <part>Ajouter une bordure au champs de texte (avec la methode
+      setBorder()) en fournissant un objet de type
+      java.swing.border.Border cree via une methode de la classe
+      java.swing.BorderFactory, par exemple la methode
+      createLineBorder(Color color, int thickness).
+    </part>
+    
+  </text>
+  
+  <correction>
+    Vous pensez tout de meme pas que je vais en plus me fouler a faire une correction
+  </correction>
+  
+</exo>
+
+
