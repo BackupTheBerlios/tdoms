@@ -2,6 +2,10 @@ import java.util.ArrayList;
 import java.util.ListIterator;
 import java.security.InvalidParameterException;
 
+/**
+ * Describes a Unit. A Unit is a generalization of all the documents
+ * teachers will be able to put and read online.
+ */
 public abstract class Unit
 {
     //Attributes
@@ -10,6 +14,8 @@ public abstract class Unit
     private ArrayList keyword_list;
     private Teaching  location;
     private String    file_name;
+    
+    
     
     //Constructors
     public Unit(String title, String description, String file_name,
@@ -22,7 +28,7 @@ public abstract class Unit
 	this.location     = location;
     }
     
-    //public Unit(){ this.keyword_list = new ArrayList(); }
+    
     
     //-------------------getters    
     /**
@@ -46,13 +52,14 @@ public abstract class Unit
     /**
      * Returns this unit's teaching location, ie field/section/year/
      */
-    public String getTeachingLocation()
+    public String getUnitTeachingLocation()
     { return this.location.getSubPath(); }
     
     /**
      * Returns the description of a unit in the XML form.
      */
     public abstract String getXMLDescription();
+    
     
     
     //-------------------setters
@@ -103,10 +110,10 @@ public abstract class Unit
      */    
     public void setTeachingLocation(Teaching location)
     {
-	if(location != null)
-	    this.location = location;
+	if(location != null) this.location = location;
 	else throw new InvalidParameterException("Parameter mustn't be null");
     }
+    
     
     
     /**
@@ -124,5 +131,5 @@ public abstract class Unit
      * @return the iterator
      */
     public ListIterator getKeywordIterator(int index)
-    { return this.keyword_list.listIterator(); }
+    { return this.keyword_list.listIterator(index); }
 }
