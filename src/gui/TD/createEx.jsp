@@ -16,7 +16,7 @@
 </table>
 <br>
 
-<!------------------------------------- DEBUT NEWS ----------------------------------------->
+<!------------------------------------- EDIT EX ----------------------------------------->
 <!-- News 1 -->
 <table cellpadding="0" cellspacing="0" border="0" bgcolor="#000000" width="100%">
   <tbody>
@@ -50,26 +50,26 @@
                         </select></td>
                     </tr>
                     <tr>
-                      <td><input name="textfield" type="text" class="userbox" value="Mots-cl&eacute;s" size="40" maxlength="80"></td>
+                      <td><input name="data[keywords]" type="text" class="userbox" value="Mots-cl&eacute;s" size="40" maxlength="80"></td>
                     </tr>
                     
                     
                     <tr>
-                      <td><textarea name="synopsis" cols="80" rows="10" class="userbox" id="synopsis"></textarea></td>
+                      <td><textarea name="data[sujet]" cols="80" rows="10" class="userbox" id="synopsis"></textarea></td>
                     </tr>
                     <tr>
                       <td>
 					  <input type="file" class="userbox" size="40">
-                      <input name="upload[subject]" type="submit" class="userbox" id="upload[subject]" value="T&eacute;l&eacute;charger">
+                      <input name="upload[sujetPic]" type="submit" class="userbox" id="upload[subject]" value="T&eacute;l&eacute;charger">
 					  </td>
                     </tr>
                     <tr>
-                      <td><textarea name="synopsis" cols="80" rows="10" class="userbox" id="synopsis"></textarea></td>
+                      <td><textarea name="data[correction]" cols="80" rows="10" class="userbox" id="synopsis"></textarea></td>
                     </tr>
                     <tr>
                       <td>
 					  <input type="file" class="userbox" size="40">
-                      <input name="upload[coorection]" type="submit" class="userbox" id="upload[coorection]" value="T&eacute;l&eacute;charger"></td>
+                      <input name="upload[correctionPic]" type="submit" class="userbox" id="upload[coorection]" value="T&eacute;l&eacute;charger"></td>
                     </tr>
                     <tr>
                       <td align="right"><input name="input[validateTD]" type="submit" class="userbox" id="input[validateTD]" value="OK">

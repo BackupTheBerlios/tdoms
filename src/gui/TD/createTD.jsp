@@ -5,7 +5,7 @@
 <SCRIPT LANGUAGE="JavaScript">
 <!--
 function showPopUp(url) {
-reWin = window.open(url,'_blank',
+reWin = window.open('popup.jsp?pg=' + url,'_blank',
 'toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,'
 +'width=600,height=700,top=100,left=100');
 }
@@ -28,8 +28,8 @@ window.location = url;
 </table>
 <br>
 
-<!------------------------------------- DEBUT NEWS ----------------------------------------->
-<!-- News 1 -->
+<!------------------------------------- DEBUT EDIT ----------------------------------------->
+
 <table cellpadding="0" cellspacing="0" border="0" bgcolor="#000000" width="100%">
   <tbody>
     <tr>
@@ -62,22 +62,22 @@ window.location = url;
                         </select></td>
                     </tr>
                     <tr>
-                      <td><input name="textfield" type="text" class="userbox" value="Mots-cl&eacute;s" size="40" maxlength="80"></td>
+                      <td><input name="data[keywords]" type="text" class="userbox" value="Mots-cl&eacute;s" size="40" maxlength="80"></td>
                     </tr>
                     <tr>
-                      <td><textarea name="textfield2" cols="40" rows="2" class="userbox">Description</textarea></td>
+                      <td><textarea name="data[description]" cols="40" rows="2" class="userbox">Description</textarea></td>
                     </tr>
                     <tr>
                       <td>
-					  <input name="searchTD" type="button" class="userbox" onClick="showPopUp('searchEx.jsp')" value="Rechercher un exercice">
-                      <input name="createTD" type="button" class="userbox" onClick="showPopUp('createEx.jsp')" value="Cr&eacute;er un exercice"></td>
+					       <input name="searchTD" type="button" class="userbox" onClick="showPopUp('TD/search.jsp?mode=ex')" value="Rechercher un exercice">
+                      <input name="createTD" type="button" class="userbox" onClick="showPopUp('TD/createEx.jsp')" value="Cr&eacute;er un exercice"></td>
                     </tr>
                     <tr>
-                      <td><textarea name="synopsis" cols="80" rows="10" readonly="readonly" class="userbox" id="synopsis"></textarea></td>
+                      <td><textarea name="data[synopsis]" cols="80" rows="10" readonly="readonly" class="userbox" id="synopsis"></textarea></td>
                     </tr>
                     <tr>
                       <td align="right"><input name="input[validateTD]" type="submit" class="userbox" id="input[validateTD]" value="OK">
-                        <input name="input[Cancel]" type="button" class="userbox" id="input[Cancel]" onClick="goTo('../teacher/teacher_welcome.jsp')" value="Annuler"></td>
+                        <input name="input[Cancel]" type="button" class="userbox" id="input[Cancel]" onClick="goTo('<%= response.encodeURL("index.jsp?pg=teacher/welcome.jsp") %>')" value="Annuler"></td>
                     </tr>
                   </table>
 			      

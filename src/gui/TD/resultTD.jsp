@@ -7,7 +7,7 @@
     <tr>
       <td align="left" valign="top">&nbsp;</td>
       <td width="100%" align="right" valign="middle"> 
-      <span class="pagetitle"><br/>Résultat de la recherche de TDs</span>   
+      <span class="pagetitle"><br/>Résultat de la recherche</span>
       </td>
     </tr>
   </tbody>
@@ -15,20 +15,38 @@
 <br>
 
 <!------------------------------------- DEBUT RESULTAT ----------------------------------------->
-<!-- Result 1 -->
+<%
+
+boolean light = true;
+String color = "#DDDDDD";
+for( int i=0; i<10; i++)
+{
+  if( light )
+  {
+    color = "#DDDDDD";
+	light = !light;
+  }
+  else
+  {
+    color = "#AAAAAA";
+	light = ! light;
+  }
+%>
+
+<!-- Result <%= i %> -->
 <table cellpadding="0" cellspacing="0" border="0" bgcolor="#000000" width="100%">
   <tbody>
     <tr>
       <td align="center">
       <table cellpadding="4" cellspacing="1" border="0" width="100%">
           <tbody>
-            <tr bgcolor="#DDDDDD"> 
+            <tr bgcolor="<%= color %>"> 
               <td width="80%" align="left" valign="top" class="text">
-			  TD - Titre<br/>
+			  TD <%= i %> - Titre<br/>
 			  <span class="description">Description</span>
 		  </td>
               <td width="20%" align="center" valign="top" class="text">
-			  [<a href="display.jsp?mode=PDF">PDF</a>] [<a href="display.jsp?mode=HTML">HTML</a>]
+			  [<a href="TD/display.jsp?mode=PDF">PDF</a>] [<a href="TD/display.jsp?mode=HTML">HTML</a>]
 			  </td>
             </tr>
           </tbody>
@@ -38,29 +56,7 @@
   </tbody>
 </table>
 <br>
-                                       
+<% } %>
 
-<!-- Result 2 -->
-<table cellpadding="0" cellspacing="0" border="0" bgcolor="#000000" width="100%">
-  <tbody>
-    <tr>
-      <td align="center">
-	  <table cellpadding="4" cellspacing="1" border="0" width="100%">
-          <tbody>
-            <tr bgcolor="#AAAAAA">
-		      <td width="80%" align="left" valign="top" class="text">
-			  TD - Titre<br/>
-			  <span class="description">Description</span>
-		  </td>
-              <td width="20%" align="center" valign="top" class="text">
-			  [<a href="display.jsp?mode=PDF">PDF</a>] [<a href="display.jsp?mode=HTML">HTML</a>]
-			  </td>
-            </tr>
-          </tbody>
-      </table>
-	  </td>
-    </tr>
-  </tbody>
-</table>
 
 <!---------------------------------------- FIN RESULTAT ----------------------------------------->
