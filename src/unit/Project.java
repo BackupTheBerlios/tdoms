@@ -1,5 +1,11 @@
 import java.util.ArrayList;
+import java.io.File;
 
+/*
+  ce qui manque:
+  -description XML
+  -tester getTeachingLocation()
+*/
 public class Project extends SingleUnit
 {
     public Project(String text, String title, String description, String file_name,
@@ -12,7 +18,7 @@ public class Project extends SingleUnit
      * Returns the relative location of the teaching
      */
     public String getTeachingLocation()
-    { return super.getTeachingLocation()+"projet/"; }
+    { return getUnitTeachingLocation()+File.separator+"project"+File.separator; }
     
     /**
      * Returns the description of a unit in the XML form.
