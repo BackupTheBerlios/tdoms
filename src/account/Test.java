@@ -7,9 +7,11 @@ public class Test{
 	//dbh.createTable();
 
 	AccountManager am = new AccountManager(dbh,"account");
-	am.deleteAccount("emlissa");
-	boolean toto = am.addNewAccount("Melissa","emlissa","paola",700);
+	am.deleteAccount("tatayoyo");
+	boolean toto = am.addNewAccount("Tymeng","tatayoyo","eastcoast","tyty@vachier.com");
 	System.out.println(toto);
+
+	am.updateAccount("tatayoyo","grumble","pistolty@vachier.com");
 	dbh.disconnect();
     }
 }
