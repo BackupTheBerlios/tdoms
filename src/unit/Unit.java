@@ -1,6 +1,6 @@
 import java.security.InvalidParameterException;
 
-public abstract class Unit
+public class Unit
 {
     //Attributes
     private String title;
@@ -10,9 +10,9 @@ public abstract class Unit
     //Constructors
     public Unit(String title, String description, String file_name)
     {
-	this.title = title;
+	this.title       = title;
 	this.description = description;
-	this.file_name = file_name;
+	this.file_name   = file_name;
     }
     
     public Unit(){}
