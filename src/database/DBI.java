@@ -1,4 +1,7 @@
+package database;
+
 import java.sql.*;
+import java.util.*;
 
 /**
  *La DBI (Data Base Interface) est la classe de gestion de la base de données contenant
@@ -129,7 +132,12 @@ public class DBI{
 	}catch(SQLException e){ System.out.println("La connection ne passe pas");}
     }
 
-
+    /**
+     * Execution of the specified query and return a boolean to say if the execution
+     * of that query succeed or not.
+     * @param query: The query to be executed
+     * @return true if the query succeed or false otherwise
+     */
     public boolean reqSimple(String query){
 	boolean res = false;
 	try{
@@ -154,19 +162,42 @@ public class DBI{
     }
 
     /**
-     * Execution of a query to get some lines from the database but doens't modify it.
-     * This metod would be most used for queries like SELECT...
+     * Execution of a query to get one line from the database but doens't modify it.
+     * The values of the lines are stored in an HashMap with the name of the field
+     * as the key in the map.
+     * This method would be most used for queries like SELECT...
      * @param query: The query to be executed.
-     * @return a ResultSet containning the lines or null.
+     * @return an HashMap containing the values or null.
      */
-    public ResultSet reqQuery(String query){
+    public HashMap reqSelect(String query){
+	HashMap resMap = new HashMap();
 	ResultSet res = null;
 	try{
 	    Statement stmt = connect.createStatement();
-	    res = stmt.executeQuery(query); 
+	    String strValue;
+	    res = stmt.executeQuery(query);
+	    while(res.next()){
+		//Name
+		strValue = res.getString("name");
+		System.out.println("name: "+strValue);
+		resMap.put("name",strValue);
+		//Login
+		strValue = res.getString("login");
+		System.out.println("login: "+strValue);
+		resMap.put("login",strValue);
+		//Passwd
+		strValue = res.getString("passwd");
+		System.out.println("passwd: "+strValue);
+		resMap.put("passwd",strValue);
+		//Email
+		strValue = res.getString("email");
+		System.out.println("email: "+strValue);
+		resMap.put("email",strValue);
+		
+	    }	    
 	    stmt.close();
 	}catch(SQLException e){ System.out.println("Erreur lors de l'execution de la requête: "+query);}
-	return res;
+	return resMap;
     }
     
     /**
@@ -182,10 +213,10 @@ public class DBI{
 	try{
 	    Statement stmt = connect.createStatement();
 	    stmt.executeUpdate( "CREATE TABLE ACCOUNT ("  +
-				"name        VARCHAR (20) NOT NULL, "    +
-				"login       VARCHAR (10)  NOT NULL, "    +
-				"passwd      VARCHAR (10) NOT NULL,"     +
-				"rights      INTEGER      NOT NULL, "    +
+				"name        VARCHAR (30) NOT NULL, "    +
+				"login       VARCHAR (30) NOT NULL, "    +
+				"passwd      VARCHAR (30) NOT NULL,"     +
+				"email       VARCHAR (40) NOT NULL,"     +
 				"PRIMARY KEY ( login )"                  +
 				")" );
 	}catch(SQLException e){ e.printStackTrace();System.out.println("La connection ne passe pas");}
