@@ -8,9 +8,10 @@ if(userMode == null){
 
 String userName = (String) session.getAttribute("userName");
 if(userName == null){
-  userName = request.getParameter("data[name]");
+  userName = request.getParameter("login");
   if(userName !=null ) session.setAttribute("userName",userName);
 }
 
-response.sendRedirect(response.encodeRedirectURL("index.jsp?pg=teacher/welcome.jsp"));
+response.sendRedirect(response.encodeRedirectURL("index.jsp?pg=teacher/manageSubject.jsp"));
+
 %>

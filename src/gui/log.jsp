@@ -15,7 +15,7 @@
 				
 			  <tr> 
 				<td>
-				<input type="submit" name="input[sign]" value="Signout" class="userboxinput">
+				<input type="submit" name="signout" value="Signout" class="userboxinput">
 			</td>
 			  </tr>
 		  </table>
@@ -29,20 +29,20 @@
 			<tbody><tr>
 			  <td>Login:</td>
 			  <td>
-				<input type="text" name="data[name]" maxlength="100" size="10" class="userboxinput">
+				<input type="text" name="login" maxlength="100" size="10" class="userboxinput">
 			  </td>
 			</tr>
 		
 			<tr> 
 			  <td>Pass:</td>
 			  <td>
-				<input type="password" name="data[password]" maxlength="30" size="10" class="userboxinput">
+				<input type="password" name="password" maxlength="30" size="10" class="userboxinput">
 			  </td>
 			</tr>
 			<tr> 
 			  <td>&nbsp;</td>
 			  <td>
-				<input name="input[sign]" type="submit" value="Signin" class="userboxinput">
+				<input name="signin" type="submit" value="Signin" class="userboxinput">
 			  </td>
 			</tr>
 		

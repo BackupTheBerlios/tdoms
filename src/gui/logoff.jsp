@@ -1,6 +1,6 @@
 <%
 
 session.invalidate();
-    response.sendRedirect(response.encodeRedirectURL("index.jsp"));
+response.sendRedirect(response.encodeRedirectURL("index.jsp"));
 
 %>

@@ -59,7 +59,7 @@ String userMode = (String) session.getAttribute("userMode");
 			    <table cellpadding="0" cellspacing="1" border="0" width="100%" class="al">
 		          <tbody>
 			        <tr>
-			          <td align="left"><a href="<%= response.encodeURL("index.jsp?pg=TD/search.jsp") %>" class="menu">Rechercher un TD</a></td>
+			          <td align="left"><a href="<%= response.encodeURL("index.jsp?pg=TD/search.jsp&mode=td") %>" class="menu">Rechercher un TD</a></td>
                     </tr>
 		          </tbody>
 		        </table>
