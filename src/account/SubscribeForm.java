@@ -6,7 +6,10 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionError;
 
-
+/**
+ * Bean filled by Struts when the user entered the subscription form
+ * contained in teacher/subscribe.jsp
+ */
 public class SubscribeForm extends ActionForm{
     
     private String mail = null;

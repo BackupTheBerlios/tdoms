@@ -27,7 +27,14 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.util.Random;
 
-
+/**
+ * This class manages the subscription of a user. It is called by Struts
+ * after that the user has validated the subscription form contained in
+ * teacher/subscribe.jsp.
+ * If the user is allowed to subscribe, a temporary file is created. He will
+ * then receive a mail which tells him to visit that file. He will have to visit
+ * that page to confirm subscription.
+ */
 public class SubscribeAction extends Action
 {
     private final static char [] letters = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i',
