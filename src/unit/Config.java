@@ -1,6 +1,7 @@
+package unit;
 /*
   ce qu'il reste a faire:
-  -compléter cette classe
+  -compl?ter cette classe
  */
 public class Config
 {

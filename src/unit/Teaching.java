@@ -1,3 +1,4 @@
+package unit;
 import java.security.InvalidParameterException;
 import java.io.File;
 
@@ -9,11 +10,11 @@ public class Teaching
 {
     private String field;
     private String section;
-    private short  year;
+    private int  year;
     
     
     
-    public Teaching(String field, String section, short year)
+    public Teaching(String field, String section, int year)
     {
 	this.field   = field;
 	this.section = section;
@@ -25,7 +26,7 @@ public class Teaching
     /**
      * Returns the year when the Teaching was created
      */
-    public short getYear()
+    public int getYear()
     { return this.year; }
     
     /**

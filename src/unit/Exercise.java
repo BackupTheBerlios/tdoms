@@ -1,48 +1,58 @@
+package unit;
+import java.io.File;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
-import java.io.File;
+
+import xmlProcessing.Bean2XML;
 
 /*
   Ce qu'il reste a faire:
   -description XML
  */
-public class Exercise extends SingleUnit
-{
-    private String correction;//To add images to the correction, use the SingleUnit class
-    
-    
-    
-    public Exercise(String correction,
-		    String text, String title, String description, String file_name,
-		    ArrayList keyword_list, Teaching location)
-    {
-	super(text, title, description, file_name, keyword_list, location);
-	if(correction != null) this.correction = correction;
-	else throw new InvalidParameterException("Parameter mustn't be null");
-    }
-    
-    
-    
-    public void setCorrection(String correction)
-    {
-	if(correction != null) this.correction = correction;
-	else throw new InvalidParameterException("Parameter mustn't be null");
-    }
-    
-    
-    
-    public String getCorrection()
-    { return this.correction; }
-    
-    /**
-     * Returns the description of a unit in the XML form.
-     */
-    public String getXMLDescription()
-    { return "Exercise: VOID"; }
-    
-    /**
-     * Returns the relative location of the teaching
-     */
-    public String getTeachingLocation()
-    { return getUnitTeachingLocation()+File.separator+"exercise"+File.separator; }
+public class Exercise extends SingleUnit {
+	private String correction;
+	//To add images to the correction, use the SingleUnit class   
+
+	public Exercise(
+		String title,
+		ArrayList keywordList,
+		ArrayList questionList,
+		String description,
+		String fileName,		
+		String correction,
+		Teaching location) {
+		super(questionList, title, description, fileName, keywordList, location);
+		if (correction != null)
+			this.correction = correction;
+		else
+			this.correction = "";
+	}
+
+	public void setCorrection(String correction) {
+		if (correction != null)
+			this.correction = correction;
+		else
+			this.correction = "";
+	}
+
+	public String getCorrection() {
+		return this.correction;
+	}
+
+	public Bean2XML getCurrentBean2XMLObject() {
+		Bean2XML currentBean2XML = super.getCurrentBean2XMLObject();
+		currentBean2XML.setBeanType("exo");
+		currentBean2XML.addXMLElement("correction", getCorrection());
+		return currentBean2XML;
+	}
+
+	/**
+	 * Returns the relative location of the teaching
+	 */
+	public String getTeachingLocation() {
+		return getUnitTeachingLocation()
+			+ File.separator
+			+ "exercise"
+			+ File.separator;
+	}
 }
