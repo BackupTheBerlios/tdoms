@@ -1,3 +1,7 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean" %>
+<%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html" %>
+
 <!--
 <link href="../resources/L5.css" rel="stylesheet" type="text/css">
 -->
@@ -25,37 +29,37 @@
       <tbody>
         <tr bgcolor="#CCCCCC"> 
               <td colspan="2" align="center" valign="top">
-			  <form method="post" action="subscribe">
+		<html:form action="/subscribe" name="subscribe" type="account.SubscribeForm">
 			      <table width="350" border="0" cellspacing="2" class="text">
                     <tr>
                       <td width="69">mail:</td>
                       <td width="79">
-                    <input type="text" name="data[mail]" maxlength="100" size="15" class="userboxinput">
-                    <input type="hidden" name="ref" value="%2F">
+<html:text property="mail" maxlength="100" size="15" styleClass="userboxinput" />
+<html:hidden property="ref" value="%2F" />
 					</td>
                       <td width="12">@</td>
                       <td width="172">
-					  <select name="data[domain]" class="userboxinput">
-                          <option>univ-mlv.fr</option>
-                          <option>igm.univ-mlv.fr</option>
-                          <option>monge.univ-mlv.fr</option>
-                      </select>
+<html:select property="domain" styleClass="userboxinput">
+	<html:option value="univ-mlv.fr">univ-mlv.fr</html:option>
+	<html:option value="igm.univ-mlv.fr">igm.univ-mlv.fr</html:option>
+	<html:option value="monge.univ-mlv.fr">monge.univ-mlv.fr</html:option>
+</html:select>
 				      </td>
                     </tr>
                     <tr>
                       <td>login d&eacute;sir&eacute;</td>
                       <td colspan="3">
-					  <input type="text" name="data[login]" maxlength="100" size="15" class="userboxinput">
+<html:text property="login" maxlength="100" size="15" styleClass="userboxinput"/>
 					  </td>
                     </tr>
                     <tr>
                       <td>&nbsp;</td>
                       <td colspan="3">
-					  <input name="input[subscribe]" type="submit" value="Valider" class="userboxinput">
+<html:submit property="validate" value="Valider" styleClass="userboxinput" />
 					  </td>
                     </tr>
                   </table>
-				</form>
+				</html:form>
 		  </td>
         </tr>
       </tbody>
