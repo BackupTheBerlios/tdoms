@@ -20,22 +20,22 @@ public class AccountManager{
      * @param name: The name of the user,
      * @param login: The login of the user,
      * @param passwd: The password of the user,
-     * @param rights: The rights of the user.
+     * @param email: The email address of the user.
      * @return false if the execution didn't succeed or if there's already an account with that login, true otherwise.
      */
-    public boolean addNewAccount(String name, String login, String passwd, int rights){
-	
+    public boolean addNewAccount(String name, String login, String passwd, String email){
+
 	dbh.establishConnection();
 	
-	String tmp = "SELECT * FROM "+acctable+" WHERE login='"+login+"';";
+	String tmp = "SELECT * FROM "+acctable+" WHERE login='"+login.trim();+"';";
 	System.out.println("Requete --> "+tmp);
 	if(!dbh.reqSimple(tmp)){
-	    System.out.println("An entry with the login ->"+login+"<- already exist in the database");
+	    System.out.println("An entry with the login ->"+login.trim();+"<- already exist in the database");
 	    dbh.disconnect();
 	    return false;
 	}
 	
-	String query = "INSERT INTO "+acctable+" VALUES ('"+name+"','"+login+"','"+passwd+"',"+rights+");";
+	String query = "INSERT INTO "+acctable+" VALUES ('"+name.trim();+"','"+login.trim();+"','"+passwd.trim();+"','"+email.trim();+"');";
 	dbh.reqUpdate(query);
 	dbh.disconnect();
 	return true;
@@ -46,21 +46,21 @@ public class AccountManager{
      * @param login: The login of the user.
      */
     public void deleteAccount(String login){
-	String query = "DELETE FROM "+acctable+" WHERE (login='"+login+"');";
+	String query = "DELETE FROM "+acctable+" WHERE (login='"+login.trim();+"');";
 	dbh.establishConnection();
 	dbh.reqUpdate(query);
 	dbh.disconnect();
     }
 
     /**
-     * Update the password of an user.
+     * Update the password and the email address of an user.
      * @param login: The login of the user,
-     * @param oldpasswd: His old password,
+     * @param newemail: His new email address,
      * @param newpasswd: His new password.
      */
-    public void updateAccount(String login, String oldpasswd, String newpasswd){
-	String query = "UPDATE "+acctable+" SET passwd = '"+newpasswd+"'WHERE (login='"+login+"' AND passwd='"+
-	    oldpasswd+"');";
+    public void updateAccount(String login, String newpasswd, String newemail){
+	String query = "UPDATE "+acctable+" SET passwd = '"+newpasswd.trim();+"',email = '"+newemail.trim();+
+	    "' WHERE (login='"+login.trim();+"');";
 	dbh.establishConnection();
 	dbh.reqUpdate(query);
 	dbh.disconnect();
