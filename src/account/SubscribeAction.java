@@ -71,6 +71,7 @@ public class SubscribeAction extends Action
 	String addressRead=null;
 	
 	BufferedReader fic = new BufferedReader(new FileReader("../../../conf/teacher_list.txt"));
+	//BufferedReader fic = new BufferedReader(new FileReader("/home/main01/mbriend/genie_logiciel/projet/jakarta-tomcat-4.1.18-LE-jdk14/webapps/tdoms/conf/teacher_list.txt"));
 	while( ((addressRead = fic.readLine())!=null) && (!addressRead.equals(addressMail)) );
 	fic.close();
 	
@@ -88,7 +89,6 @@ public class SubscribeAction extends Action
     {
 	String pageName = generateRandomWord()+".jsp";
 	String pagePath = "../../../user-files/tmpfiles/"+pageName;
-	//index.jsp?pg=message.jsp&inside=pageName.tmp
 	String message = "<%@ page contentType=\"text/html;charset=UTF-8\" language=\"java\" %>\n<%@ taglib uri=\"/WEB-INF/struts-bean.tld\" prefix=\"bean\" %><%@ taglib uri=\"/WEB-INF/struts-html.tld\" prefix=\"html\" %>\nPour confirmer votre inscription, cliquez sur le bouton ci-dessous.<br/>\n<html:form action=\"/confirm\" name=\"confirm\" type=\"account.SubscribeForm\">\n<html:button property=\"confirmation\" title=\"confirmationTitle\" value=\"Confirm\">\n</html:form>"+pageName;
 	try{
 	    BufferedWriter file = new BufferedWriter(new FileWriter(pagePath));
@@ -142,7 +142,7 @@ public class SubscribeAction extends Action
 	    return mapping.findForward("error");
 	
 	String password = generateRandomWord();
-
+	
 	String pageName = createTemporaryConfirmationPage();
 	if( (pageName != null) && sendConfirmationMail(login, password, addressMail, pageName) )
 	    return mapping.findForward("success");
