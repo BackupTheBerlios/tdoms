@@ -1,14 +1,25 @@
 <?xml version="1.0" ?>
-<project name="tdoms" default="compile">
-<description>Compiles and executes the project</description>
+<project name="reseau" default="compile">
+  <description>Compile et execute le projet</description>
+  
+  <property environment="env"/>
+  <!-- <property name="cp"
+  value="${env.JAKARTA_HOME}webapps/tdoms/WEB-INF/lib/struts.jar"/>
+  -->
+  <!-- <property name="cp"
+    value="${env.JAKARTA_HOME}webapps/tdoms/WEB-INF/lib/mail.jar"/> -->
+  <property name="cp"
+    value="${env.JAKARTA_HOME}common/lib/servlet.jar:${env.JAKARTA_HOME}common/lib/servlet.jar:${env.JAKARTA_HOME}webapps/tdoms/WEB-INF/lib/pg73jdbc3.jar:${env.JAKARTA_HOME}webapps/tdoms/WEB-INF/lib/struts.jar:${env.JAKARTA_HOME}webapps/tdoms/WEB-INF/lib/commons-*.jar:${env.JAKARTA_HOME}webapps/tdoms/WEB-INF/lib/mail.jar:${env.JAKARTA_HOME}webapps/tdoms/WEB-INF/lib/activation.jar:${env.JAKARTA_HOME}webapps/tdoms/WEB-INF/lib/avalon.jar:${env.JAKARTA_HOME}webapps/tdoms/WEB-INF/lib/batik.jar:${env.JAKARTA_HOME}webapps/tdoms/WEB-INF/lib/fop.jar:${env.JAKARTA_HOME}webapps/tdoms/WEB-INF/lib/jakarta-oro.jar:${env.JAKARTA_HOME}webapps/tdoms/WEB-INF/lib/xalan-2.4.1.jar:${env.JAKARTA_HOME}webapps/tdoms/WEB-INF/lib/xercesImpl-2.2.1.jar:/home/main01/mbriend/genie_logiciel/jakarta-tomcat-4.1.18-LE-jdk14/webapps/tdoms/WEB-INF/lib/xincluder.jar:/home/main01/mbriend/genie_logiciel/jakarta-tomcat-4.1.18-LE-jdk14/webapps/tdoms/WEB-INF/lib/xml4j.jar"/>
+  
   <target name="init">
      <mkdir dir="classes/archive" />
   </target>
 
   <target name="compile" depends="init"
 	  description="Creation de repertoires">
-    <javac srcdir="src"
-	   destdir="classes" />
+    <javac srcdir="src" destdir="classes">
+      <classpath path="${cp}"/>
+    </javac>
   </target>
   <!--
   <target name="archive" depends="compile"
@@ -25,4 +36,11 @@
     <delete dir="classes/archive" />
   </target>
 
+  <target name="run" depends="compile"
+	  description="Execute le programme">
+    <java
+	  classname="gui.Main"
+	  classpath="classes">
+    </java>
+  </target>
 </project>
